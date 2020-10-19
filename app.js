@@ -27,13 +27,12 @@ app.get('/id', (req, res) => {
 		   collection.findOne({'_id': ObjectId(req.query.id) }, (err, cube) => {
 			 if(err) throw err
 			 res.send(cube)
+			 client.close()
+			 
 		  })
 	   }
 	   catch (e) {
 		   res.send({x: 0, y: 0, z: 0})
-	   }
-	   
-	   finally {
 		   client.close()
 	   }
   });
